@@ -169,7 +169,7 @@ define(function(require) {
 
     var promise;
     if (opts.refreshArgs) {
-      promise = authClient.idToken.refresh(opts.refreshArgs);
+      promise = authClient.token.refresh(opts.refreshArgs);
     } else if (opts.getWithoutPromptArgs) {
       if (Array.isArray(opts.getWithoutPromptArgs)) {
         promise = authClient.token.getWithoutPrompt.apply(null, opts.getWithoutPromptArgs);
@@ -195,8 +195,6 @@ define(function(require) {
         refreshDeferred.resolve();
       });
       promise = refreshDeferred.promise;
-    } else {
-      promise = authClient.idToken.authorize(opts.authorizeArgs);
     }
 
     if (opts.fastForwardToTime) {
